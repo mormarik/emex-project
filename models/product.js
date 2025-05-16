@@ -1,46 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+const mongoose = require('mongoose');
 
-const products = []; 
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'frontend/uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
-});
-const upload = multer({ storage });
-
-router.post('/', upload.single('image'), (req, res) => {
-  const { name, article, price, description, category, properties } = req.body;
-  const imageUrl = `/uploads/${req.file.filename}`;
-
-  const product = {
-    id: Date.now(),
-    name,
-    article,
-    price,
-    description,
-    properties: properties || '{}',
-    category,
-    imageUrl,
-  };
-
-  products.push(product); 
-  res.status(201).json({ message: 'Товар добавлен', product });
+// Определяем схему для продукта
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  article: { type: String, required: true },
+  price: { type: Number, required: true },
+  description: { type: String, required: true },
+  properties: { type: String, default: '{}' },
+  category: { type: String, required: true },
+  image: { type: String, required: true }, // Это может быть путь или base64 строка
 });
 
-router.get('/', (req, res) => {
-  const { category } = req.query;
-  if (category) {
-    return res.json(products.filter(p => p.category === category));
-  }
-  res.json(products);
-});
-
-module.exports = router;
+// Создаем модель для продукта
+module.exports = mongoose.model('Product', productSchema);
