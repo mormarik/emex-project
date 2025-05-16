@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMEX</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-catalog.css">
+    <link rel="stylesheet" href="style-product.css">
+    <link rel="stylesheet" href="style-profile.css">
+    <link rel="SHORTCUT ICON" href="img/img2/favicon.svg" type="image/x-icon">
+</head>
+<body>
+    <header class="header">
+        <div class="white-background">
+            <div class="content-wrapper">
+                <div class="top-bar">
+                    <div class="content-container">
+                        <div class="location">
+                            <button class="location-btn" onclick="toggleDropdown()">
+                                <span id="selected-city">Оренбург</span>
+                                <img src="img/arrow.svg" alt="Стрелка" class="icon small-icon">
+                            </button>
+                            <div class="city-dropdown" id="city-dropdown">
+                                <input type="text" placeholder="Введите город..." oninput="filterCities()" id="city-search">
+                                <ul id="city-list">
+                                    <li onclick="selectCity('Москва')">Москва</li>
+                                    <li onclick="selectCity('Санкт-Петербург')">Санкт-Петербург</li>
+                                    <li onclick="selectCity('Новосибирск')">Новосибирск</li>
+                                    <li onclick="selectCity('Оренбург')">Оренбург</li>
+                                    <li onclick="selectCity('Казань')">Казань</li>
+                                    <li onclick="selectCity('Челябинск')">Челябинск</li>
+                                    <li onclick="selectCity('Самара')">Самара</li>
+                                    <li onclick="selectCity('Уфа')">Уфа</li>
+                                    <li onclick="selectCity('Ростов-на-Дону')">Ростов-на-Дону</li>
+                                    <li onclick="selectCity('Екатеринбург')">Екатеринбург</li>
+                                    <li onclick="selectCity('Волгоград')">Волгоград</li>
+                                    <li onclick="selectCity('Томск')">Томск</li>
+                                    <li onclick="selectCity('Красноярск')">Красноярск</li>
+                                    <li onclick="selectCity('Воронеж')">Воронеж</li>
+                                    <li onclick="selectCity('Пермь')">Пермь</li>
+                                    <li onclick="selectCity('Нижний Новгород')">Нижний Новгород</li>
+                                    <li onclick="selectCity('Калуга')">Калуга</li>
+                                    <li onclick="selectCity('Тула')">Тула</li>
+                                    <li onclick="selectCity('Иркутск')">Иркутск</li>
+                                    <li onclick="selectCity('Омск')">Омск</li>
+                                    <li onclick="selectCity('Краснодар')">Краснодар</li>
+                                    <li onclick="selectCity('Кувандык')">Кувандык</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-buttons">
+                        <button id="login-btn" class="login-btn">Вход</button>
+                        <div id="profile-btn-container" style="display:none;">
+                            <button id="profile-btn" class="login-btn"></button>
+                            <div id="profile-dropdown" style="display:none;">
+                                <button id="profile-link" class="login-btn">Профиль</button>
+                                <button id="logout-btn" class="login-btn">Выход</button>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+        <div class="yellow-background">
+            <div class="content-wrapper">
+              <div class="main-bar">
+                <div class="logo">
+                  <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+                </div>
+                <div class="search-wrapper">
+                  <input type="text" class="search-input" placeholder="Поиск...">
+                  <button class="search-button">
+                    <img src="img/search.svg" alt="Поиск" class="search-icon">
+                  </button>
+                </div>
+                <a href="cart.html" class="cart-link">
+                  <div class="cart">
+                    <img src="img/cart.svg" alt="Корзина" class="icon">
+                    <span class="cart-text">Корзина</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        <div class="black-background">
+            <div class="content-wrapper">
+                <nav class="nav-bar">
+                    <a href="index.html">Главная</a>
+                    <a href="job.html">Вакансии</a>
+                    <a href="about-company.html">О компании</a>
+                    <a href="contact.html">Контакты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-container">
+        <div class="product-detail">
+            <img id="product-image" alt="Фото товара" class="product-image" />
+            <div class="product-info">
+              <h1 id="product-title" class="product-title"></h1>
+              <p id="product-description" class="product-description"></p> <!-- Описание товара -->
+              <p id="product-properties" class="product-properties"></p> <!-- Характеристики товара -->
+              <p class="product-price" id="product-price"></p> <!-- Цена товара -->
+              <button class="add-to-cart" onclick="addToCart()">🛒 Добавить в корзину</button>
+            </div>
+          </div>
+          
+      
+        <section class="reviews">
+          <h2>Отзывы</h2>
+          <div id="reviews-list"></div>
+      
+          <form id="review-form">
+            <h3>Оставьте отзыв</h3>
+            <label for="rating">Оценка:</label>
+            <select id="rating">
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★☆</option>
+              <option value="3">★★★☆☆</option>
+              <option value="2">★★☆☆☆</option>
+              <option value="1">★☆☆☆☆</option>
+            </select>
+            <br />
+            <textarea id="review-text" placeholder="Ваш отзыв..."></textarea>
+            <br />
+            <button type="submit">Отправить</button>
+          </form>
+        </section>
+      
+        <section class="recently-viewed">
+          <h2>Недавно просмотренные</h2>
+          <div class="recent-grid" id="recently-viewed-list"></div>
+
+        </section>
+      </main>
+    <!-- ФУТЕР -->
+    <div class="footer">
+        <span class="footer-text">emex</span>
+    </div>
+
+    <!-- СКРИПТЫ -->
+    <script src="script.js"></script>
+    <script src="script-product.js"></script>
+    <script src="script-profile.js"></script>
+    <script src="header.js" defer></script>
+</body>
+</html>

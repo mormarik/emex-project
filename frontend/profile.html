@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMEX</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-profile.css">
+    <link rel="SHORTCUT ICON" href="img/img2/favicon.svg" type="image/x-icon">
+</head>
+<body>
+    <header class="header">
+        <div class="white-background">
+            <div class="content-wrapper">
+                <div class="top-bar">
+                    <div class="content-container">
+                        <div class="location">
+                            <button class="location-btn" onclick="toggleDropdown()">
+                                <span id="selected-city">Оренбург</span>
+                                <img src="img/arrow.svg" alt="Стрелка" class="icon small-icon">
+                            </button>
+                            <div class="city-dropdown" id="city-dropdown">
+                                <input type="text" placeholder="Введите город..." oninput="filterCities()" id="city-search">
+                                <ul id="city-list">
+                                    <li onclick="selectCity('Москва')">Москва</li>
+                                    <li onclick="selectCity('Санкт-Петербург')">Санкт-Петербург</li>
+                                    <li onclick="selectCity('Новосибирск')">Новосибирск</li>
+                                    <li onclick="selectCity('Оренбург')">Оренбург</li>
+                                    <li onclick="selectCity('Казань')">Казань</li>
+                                    <li onclick="selectCity('Челябинск')">Челябинск</li>
+                                    <li onclick="selectCity('Самара')">Самара</li>
+                                    <li onclick="selectCity('Уфа')">Уфа</li>
+                                    <li onclick="selectCity('Ростов-на-Дону')">Ростов-на-Дону</li>
+                                    <li onclick="selectCity('Екатеринбург')">Екатеринбург</li>
+                                    <li onclick="selectCity('Волгоград')">Волгоград</li>
+                                    <li onclick="selectCity('Томск')">Томск</li>
+                                    <li onclick="selectCity('Красноярск')">Красноярск</li>
+                                    <li onclick="selectCity('Воронеж')">Воронеж</li>
+                                    <li onclick="selectCity('Пермь')">Пермь</li>
+                                    <li onclick="selectCity('Нижний Новгород')">Нижний Новгород</li>
+                                    <li onclick="selectCity('Калуга')">Калуга</li>
+                                    <li onclick="selectCity('Тула')">Тула</li>
+                                    <li onclick="selectCity('Иркутск')">Иркутск</li>
+                                    <li onclick="selectCity('Омск')">Омск</li>
+                                    <li onclick="selectCity('Краснодар')">Краснодар</li>
+                                    <li onclick="selectCity('Кувандык')">Кувандык</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-buttons">
+                        <button id="login-btn" class="login-btn">Вход</button>
+                        <div id="profile-btn-container" style="display:none;">
+                            <button id="profile-btn" class="login-btn"></button>
+                            <div id="profile-dropdown" style="display:none;">
+                                <button id="profile-link" class="login-btn">Профиль</button>
+                                <button id="logout-btn" class="login-btn">Выход</button>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+       <div class="yellow-background">
+            <div class="content-wrapper">
+              <div class="main-bar">
+                <div class="logo">
+                  <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+                </div>
+                <div class="search-wrapper">
+                  <input type="text" class="search-input" placeholder="Поиск...">
+                  <button class="search-button">
+                    <img src="img/search.svg" alt="Поиск" class="search-icon">
+                  </button>
+                </div>
+                <a href="cart.html" class="cart-link">
+                  <div class="cart">
+                    <img src="img/cart.svg" alt="Корзина" class="icon">
+                    <span class="cart-text">Корзина</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+        <div class="black-background">
+            <div class="content-wrapper">
+                <nav class="nav-bar">
+                    <a href="index.html">Главная</a>
+                    <a href="job.html">Вакансии</a>
+                    <a href="about-company.html">О компании</a>
+                    <a href="contact.html">Контакты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="profile-container">
+        <div id="user-profile-container" class="user-profile-container">
+            <h1 class="user-profile-header">Мой профиль</h1> 
+            <form id="user-profile-form" class="user-profile-form">
+                <div class="user-profile-info">
+                    <div class="user-avatar-section">
+                        <img id="user-avatar" class="user-avatar-img" src="img/img2/avatar.webp" alt="Аватар">
+                        <button type="button" id="change-avatar-btn" class="change-avatar-btn">Сменить аватар</button>
+                        <button type="button" id="delete-avatar-btn" class="delete-avatar-btn">Удалить аватар</button>
+                        <input type="file" id="user-avatar-input" class="user-avatar-input" style="display: none;">
+                    </div>
+                    <div class="user-info">
+                        <div class="form-group">
+                            <label for="user-username" class="form-label">Имя пользователя:</label>
+                            <input type="text" id="user-username" class="form-input" placeholder="Введите имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email" class="form-label">Электронная почта:</label>
+                            <input type="email" id="user-email" class="form-input" placeholder="Введите email" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div id="error-msg" class="error-msg"></div>
+        
+                <button type="button" id="save-btn" class="btn-save">Сохранить</button>
+                <button type="button" id="cancel-btn" class="btn-cancel">Отменить</button>
+            </form>
+        </div>
+        <div id="admin-panel" style="display: none;">
+            <h2>Добавить товар</h2>
+            <form id="add-product-form">
+              <input type="text" id="product-name" name="name" placeholder="Название товара" required>
+              <input type="text" id="product-article" name="article" placeholder="Артикул" required>
+              <input type="number" id="product-price" name="price" placeholder="Цена" required>
+              <textarea id="product-description" name="description" placeholder="Описание"></textarea>
+              <input type="text" id="product-properties" name="properties" placeholder="Свойства товара (например, цвет, размер, материал)">
+              <input type="file" id="product-image" name="image" accept="image/*" required>
+              <select id="product-category" name="category" required>
+                <option disabled selected value="">Выберите категорию</option>
+                <option value="Шины">Шины</option>
+                <option value="Диски">Диски</option>
+                <option value="Камеры">Камеры</option>
+                <option value="Масла">Масла</option>
+                <option value="Жидкости">Жидкости</option>
+                <option value="Смазки">Смазки</option>
+                <option value="Уход и чистка">Уход и чистка</option>
+                <option value="Автокосметика">Автокосметика</option>
+                <option value="Аккумуляторы">Аккумуляторы</option>
+                <option value="Батарейки">Батарейки</option>
+                <option value="Лампы">Лампы</option>
+                <option value="Мойки высокого давления">Мойки высокого давления</option>
+                <option value="Подметальные машины">Подметальные машины</option>
+                <option value="Провода пусковые">Провода пусковые</option>
+                <option value="Пылесосы">Пылесосы</option>
+                <option value="Устройства пуско-зарядные">Устройства пуско-зарядные</option>
+                <option value="Компрессоры">Компрессоры</option>
+                <option value="Насосы и манометры">Насосы и манометры</option>
+                <option value="Видеорегистраторы">Видеорегистраторы</option>
+                <option value="Автозвук">Автозвук</option>
+                <option value="Парковочные радары и камеры">Парковочные радары и камеры</option>
+                <option value="Противоугонные устройства">Противоугонные устройства</option>
+                <option value="Подогреватели двигателя">Подогреватели двигателя</option>
+                <option value="Радар-детекторы">Радар-детекторы</option>
+                <option value="Головки торцевые">Головки торцевые</option>
+                <option value="Домкраты">Домкраты</option>
+                <option value="Ключи баллонные">Ключи баллонные</option>
+                <option value="Отвёртки">Отвёртки</option>
+                <option value="Хомуты">Хомуты</option>
+                <option value="Инструменты">Инструменты</option>
+                <option value="Защита на автомобиль">Защита на автомобиль</option>
+                <option value="Фаркопы">Фаркопы</option>
+                <option value="Багажные системы">Багажные системы</option>
+                <option value="Внешний декор">Внешний декор</option>
+                <option value="Щётки стеклоочистителя">Щётки стеклоочистителя</option>
+                <option value="Автоодеяла">Автоодеяла</option>
+                <option value="Защита и гигиена">Защита и гигиена</option>
+                <option value="Герметики">Герметики</option>
+                <option value="Клеи">Клеи</option>
+                <option value="Канистры">Канистры</option>
+                <option value="Ремни поликлиновые">Ремни поликлиновые</option>
+                <option value="Светофильтры">Светофильтры</option>
+                <option value="Автолитература">Автолитература</option>
+                <option value="Лебёдки">Лебёдки</option>
+              </select>
+              <button type="submit" id="add-product-btn">Добавить товар</button>
+            </form>
+          </div>
+          
+    </div>
+<div class="footer">
+    <span class="footer-text">emex</span>
+</div>
+</body>
+<script src="script-profile.js" defer></script>
+<script src="script-auth.js"></script>
+<script src="script.js"></script>
+<script src="header.js"></script>
+</html>
